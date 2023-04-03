@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.amal.bluetoothchat.presentation.components.ChatScreen
 import dev.amal.bluetoothchat.presentation.components.DeviceScreen
 import dev.amal.bluetoothchat.ui.theme.BluetoothChatTheme
 
@@ -79,16 +80,6 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                LaunchedEffect(key1 = state.isConnected) {
-                    if (state.isConnected) {
-                        Toast.makeText(
-                            applicationContext,
-                            "You are connected",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
-
                 Surface(color = MaterialTheme.colors.background) {
                     when {
                         state.isConnecting -> {
@@ -98,6 +89,13 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 CircularProgressIndicator()
                             }
+                        }
+                        state.isConnected -> {
+                            ChatScreen(
+                                state = state,
+                                onDisconnect = viewModel::disconnectFromDevice,
+                                onSendMessage = viewModel::sendMessage
+                            )
                         }
                         else -> DeviceScreen(
                             state = state,

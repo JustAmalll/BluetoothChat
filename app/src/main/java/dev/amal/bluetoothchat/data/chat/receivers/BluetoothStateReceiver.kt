@@ -1,4 +1,4 @@
-package dev.amal.bluetoothchat.data.chat
+package dev.amal.bluetoothchat.data.chat.receivers
 
 import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver

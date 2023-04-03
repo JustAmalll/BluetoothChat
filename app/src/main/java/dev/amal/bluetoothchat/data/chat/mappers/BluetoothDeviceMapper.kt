@@ -1,4 +1,4 @@
-package dev.amal.bluetoothchat.data.chat
+package dev.amal.bluetoothchat.data.chat.mappers
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
